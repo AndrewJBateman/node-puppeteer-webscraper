@@ -12,16 +12,18 @@
 ## :page_facing_up: Table of contents
 
 * [:zap: Node Puppeteer Webscraper](#zap-node-puppeteer-webscraper)
-  * [:page_facing_up: Table of contents](#page_facing_up-table-of-contents)
-  * [:books: General Info](#books-general-info)
-  * [:camera: Screenshots](#camera-screenshots)
-  * [:signal_strength: Technologies](#signal_strength-technologies)
-  * [:floppy_disk: Setup](#floppy_disk-setup)
-  * [:computer: Code Examples](#computer-code-examples)
-  * [:clipboard: Status & To-Do List](#clipboard-status--to-do-list)
-  * [:clap: Inspiration](#clap-inspiration)
-  * [:file_folder: License](#file_folder-license)
-  * [:envelope: Contact](#envelope-contact)
+	* [:page_facing_up: Table of contents](#page_facing_up-table-of-contents)
+	* [:books: General info](#books-general-info)
+	* [:camera: Screenshots](#camera-screenshots)
+	* [:signal_strength: Technologies](#signal_strength-technologies)
+	* [:floppy_disk: Setup](#floppy_disk-setup)
+	* [:wrench: Testing](#wrench-testing)
+	* [:computer: Code Examples](#computer-code-examples)
+	* [:cool: Features](#cool-features)
+	* [:clipboard: Status, Testing & To-Do List](#clipboard-status-testing--to-do-list)
+	* [:clap: Inspiration/General Tools](#clap-inspirationgeneral-tools)
+	* [:file_folder: License](#file_folder-license)
+	* [:envelope: Contact](#envelope-contact)
 
 ## :books: General info
 
@@ -37,7 +39,7 @@
 ## :signal_strength: Technologies
 
 * [Node.js v14](https://nodejs.org/) Javascript runtime using the [Chrome V8 engine](https://v8.dev/)
-* [Puppeteer v10](https://www.npmjs.com/package/puppeteer) Node library headless automation tool and API for Chrome and Chromium-based web browsers
+* [Puppeteer v13](https://www.npmjs.com/package/puppeteer) Node library headless automation tool and API for Chrome and Chromium-based web browsers
 * [cheerio v1](https://www.npmjs.com/package/cheerio) to parse markup and provide an API for traversing/manipulating the resulting data structure
 * [objects-to-csv v1](https://www.npmjs.com/package/objects-to-csv) to convert an array of JavaScript objects to Comma Separated Variable (CSV) format that is saved as a file.
 
@@ -57,28 +59,28 @@
 * `imdbScraper.js` function to create array of Cheerio objects using map() then return array of elements using get()
 
 ```javascript
-	const results = $('tr')
-		.map((index, element) => {
-			// title - convert to text
-			const titleElement = $(element).find('.titleColumn > a');
-			const title = $(titleElement).text();
+ const results = $('tr')
+  .map((index, element) => {
+   // title - convert to text
+   const titleElement = $(element).find('.titleColumn > a');
+   const title = $(titleElement).text();
 
-			// year - remove unwanted ( and '
-			const yearElement = $(element).find('.titleColumn > span');
-			const year = yearElement.text().replace('(', '').replace(')', '');
+   // year - remove unwanted ( and '
+   const yearElement = $(element).find('.titleColumn > span');
+   const year = yearElement.text().replace('(', '').replace(')', '');
 
-			// imdbRating - convert to text
-			const ratingRating = $(element).find('.imdbRating > strong');
-			const rating = ratingRating.text();
+   // imdbRating - convert to text
+   const ratingRating = $(element).find('.imdbRating > strong');
+   const rating = ratingRating.text();
 
-			// url - take href attribute
-			const urlElement = $(element).find('.titleColumn > a');
-			const urlAttr = urlElement.attr('href');
-			const url = `http://imdb.com${urlAttr}`;
+   // url - take href attribute
+   const urlElement = $(element).find('.titleColumn > a');
+   const urlAttr = urlElement.attr('href');
+   const url = `http://imdb.com${urlAttr}`;
 
-			return title !== '' ? { index, title, year, rating, url } : null;
-		})
-		.get();
+   return title !== '' ? { index, title, year, rating, url } : null;
+  })
+  .get();
 ```
 
 ## :cool: Features
@@ -93,6 +95,7 @@
 ## :clap: Inspiration/General Tools
 
 * [LearnWebCode: Web Scraping with Puppeteer & Node.js: Chrome Automation](https://www.youtube.com/watch?v=lgyszZhAZOI&t=392s)
+* [Puppeteer Documentation](https://devdocs.io/puppeteer/)
 * [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * [Stack overflow: What does the get() function do in cheerio?](https://stackoverflow.com/questions/54164509/what-does-the-get-function-do-in-cheerio)
 
